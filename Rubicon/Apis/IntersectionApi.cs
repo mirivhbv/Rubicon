@@ -6,12 +6,12 @@ public static class IntersectionApi
     {
         var api = app.MapGroup("api/intersection");
 
-        api.MapGet("/", GetIntersectingRectangles);
+        api.MapPost("/", GetIntersectingRectangles);
 
         return api;
     }
 
-    private static async Task<Ok<List<RectangleViewModel>>> GetIntersectingRectangles([AsParameters] IRepository<Rectangle> rectangleRepository, [FromBody] SegmentViewModel model)
+    private static async Task<Ok<List<RectangleViewModel>>> GetIntersectingRectangles(IRepository<Rectangle> rectangleRepository, [FromBody] SegmentViewModel model)
     {
         var segmentLine = new LineString(new[]
         {
