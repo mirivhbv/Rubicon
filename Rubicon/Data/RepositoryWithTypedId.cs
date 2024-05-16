@@ -3,6 +3,7 @@
 public class RepositoryWithTypedId<T, TId> : IRepositoryWithTypedId<T, TId> where T : class, IEntityWithTypedId<TId>
 {
     /// <summary>
+    /// 
     /// </summary>
     public RepositoryWithTypedId(AppDbContext context)
     {

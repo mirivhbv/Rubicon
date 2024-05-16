@@ -6,10 +6,11 @@ public class RectangleService(ILogger<RectangleService> logger) : IRectangleServ
     /// <inheritdoc />
     public bool Intersects(Rectangle rectangle, SegmentViewModel segment)
     {
-        return CheckIntersection(segment, rectangle.X1, rectangle.Y1, rectangle.X2, rectangle.Y1) ||
-               CheckIntersection(segment, rectangle.X2, rectangle.Y1, rectangle.X2, rectangle.Y2) ||
-               CheckIntersection(segment, rectangle.X2, rectangle.Y2, rectangle.X1, rectangle.Y2) ||
-               CheckIntersection(segment, rectangle.X1, rectangle.Y2, rectangle.X1, rectangle.Y1);
+        //return CheckIntersection(segment, rectangle.X1, rectangle.Y1, rectangle.X2, rectangle.Y1) ||
+        //       CheckIntersection(segment, rectangle.X2, rectangle.Y1, rectangle.X2, rectangle.Y2) ||
+        //       CheckIntersection(segment, rectangle.X2, rectangle.Y2, rectangle.X1, rectangle.Y2) ||
+        //       CheckIntersection(segment, rectangle.X1, rectangle.Y2, rectangle.X1, rectangle.Y1);
+        throw new NotImplementedException();
     }
 
     private static bool CheckIntersection(SegmentViewModel segment, double x1, double y1, double x2, double y2)
