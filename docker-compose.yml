@@ -10,9 +10,11 @@ services:
       context: .
       dockerfile: Rubicon/Dockerfile
   postgres:
-    image: postgres:latest
+    image: postgis/postgis:13-3.1
     ports:
       - 5432:5432
     environment:
+      - POSTGRES_DB=rubicondb
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mysecretpassword
     # skip volume
