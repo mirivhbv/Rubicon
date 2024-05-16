@@ -1,0 +1,6 @@
+@Rubicon_HostAddress = http://localhost:5230
+
+GET {{Rubicon_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
