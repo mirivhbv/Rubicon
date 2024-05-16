@@ -1,6 +1,13 @@
-@Rubicon_HostAddress = http://localhost:5230
+@Rubicon_HostAddress = http://localhost:5000
 
-GET {{Rubicon_HostAddress}}/weatherforecast/
+POST {{Rubicon_HostAddress}}/api/intersection/
+Content-Type: application/json
 Accept: application/json
 
+{
+    "x1": 0,
+    "y1": 0,
+    "x2": 0,
+    "y2": 3
+}
 ###

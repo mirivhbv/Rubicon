@@ -4,6 +4,7 @@ global using Microsoft.AspNetCore.Http.HttpResults;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Storage;
+global using Microsoft.Extensions.Caching.Memory;
 global using NetTopologySuite.Geometries;
 global using Rubicon.Apis;
 global using Rubicon.Core.Data;

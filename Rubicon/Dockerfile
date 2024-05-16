@@ -10,6 +10,7 @@ WORKDIR /src
 COPY ["Rubicon.sln", "Rubicon.sln"]
 COPY ["Rubicon.Core/Rubicon.Core.csproj", "Rubicon.Core/"]
 COPY ["Rubicon/Rubicon.csproj", "Rubicon/"]
+COPY ["Rubicon.Tests/Rubicon.Tests.csproj", "Rubicon.Tests/"]
 COPY "scripts" "scripts"
 COPY docker-compose.dcproj ./
 RUN dotnet restore "Rubicon.sln"
