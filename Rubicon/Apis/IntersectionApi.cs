@@ -11,19 +11,9 @@ public static class IntersectionApi
         return api;
     }
 
-    private static async Task<Ok<List<RectangleViewModel>>> GetIntersectingRectangles(IRepository<Rectangle> rectangleRepository, [FromBody] SegmentViewModel model)
+    private static async Task<Ok<IEnumerable<RectangleViewModel>>> GetIntersectingRectangles(IIntersectionService intersectionService, [FromBody] SegmentViewModel model)
     {
-        var segmentLine = new LineString(new[]
-        {
-            new Coordinate(model.X1, model.Y1),
-            new Coordinate(model.X2, model.Y2)
-        });
-
-        var rectangles = await rectangleRepository.Query()
-            .Where(r => r.Geometry.Intersects(segmentLine))
-            .Select(x => RectangleViewModel.GetFromEntity(x))
-            .ToListAsync();
-
-        return TypedResults.Ok(rectangles);
+        var intersectedRectangles = await intersectionService.GetIntersectedRectangles(model.X1, model.Y1, model.X2, model.Y2);
+        return TypedResults.Ok(intersectedRectangles.Select(RectangleViewModel.GetFromEntity));
     }
 }
