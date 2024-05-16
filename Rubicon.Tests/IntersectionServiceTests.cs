@@ -7,14 +7,13 @@ namespace Rubicon.Tests;
 
 public class IntersectionServiceTests
 {
-    private readonly DbContextOptions<AppDbContext> _dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
-        .UseInMemoryDatabase("TestDatabase")
-        .Options;
-
     [Fact]
     public async Task GetIntersectingRectangles_ReturnsIntersectingRectangles()
     {
-        await using (var context = new AppDbContext(_dbContextOptions))
+        var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase("TestDatabase1")
+            .Options;
+        await using (var context = new AppDbContext(contextOptions))
         {
             context.Rectangles.Add(Rectangle.FromCoordinates(0, 0, 2, 2));
             context.Rectangles.Add(Rectangle.FromCoordinates(1, 1, 3, 3));
@@ -22,7 +21,7 @@ public class IntersectionServiceTests
             await context.SaveChangesAsync();
         }
 
-        await using (var context = new AppDbContext(_dbContextOptions))
+        await using (var context = new AppDbContext(contextOptions))
         {
             var repo = new Repository<Rectangle>(context);
             var sut = new IntersectionService(repo);
@@ -38,14 +37,17 @@ public class IntersectionServiceTests
     [Fact]
     public async Task GetIntersectingRectangles_NoIntersections_ReturnsEmptyList()
     {
+        var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase("TestDatabase2")
+            .Options;
         // Arrange
-        await using (var context = new AppDbContext(_dbContextOptions))
+        await using (var context = new AppDbContext(contextOptions))
         {
             context.Rectangles.Add(Rectangle.FromCoordinates(0, 0, 2, 2));
             await context.SaveChangesAsync();
         }
 
-        await using (var context = new AppDbContext(_dbContextOptions))
+        await using (var context = new AppDbContext(contextOptions))
         {
             var repo = new Repository<Rectangle>(context);
             var sut = new IntersectionService(repo);
